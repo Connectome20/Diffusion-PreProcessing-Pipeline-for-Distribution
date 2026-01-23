@@ -1,4 +1,4 @@
-Users will need to replace every instance of '/your/project/directory/’ in the GUI script with the path to their desired directory. 
+The script to generate the diffusion pre-processing GUI can be downloaded as the file diff_preproc_c2external.py. Users will need to replace every instance of '/your/project/directory/’ in the GUI script with the path to their desired directory. 
 
 
 Configuration File:
