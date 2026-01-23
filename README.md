@@ -14,6 +14,11 @@ Expert File (recon-all):
 The expertFile file for recon-all must be saved to '/your/project/directory/bids/code/preprocessing_dwi/‘ (or another path of the user's choosing, which must be updated in the GUI script as well).
 
 
+Rician Noise Correction File:
+
+The file rician_correct_mppca.sh must be saved to '/your/project/directory/bids/code/preprocessing_dwi/‘ (or another path of the user's choosing, which must be updated in the GUI script as well).
+
+
 
 
 Sequence Specifications:
