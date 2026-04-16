@@ -3,7 +3,7 @@ The script to generate the diffusion pre-processing GUI can be downloaded as the
 '''
 ## Configuration File:
 
-Users will need to replace every instance of ‘your project sequence’ in the config.json file with the specific or wild-carded names of sequences that they want to extract (e.g., *ep2d_diff_C2_D30_d6_64dirs* or *t1*). Optionally, users can add custom labels (in the spot of ‘your custom label’) to differentiate diffusion sequences.
+Users will need to replace every instance of ‘your project sequence’ in the config.json file with the specific or wild-carded names of sequences that they want to extract (e.g., *ep2d_diff_C2_D30_d6_64dirs*). Optionally, users can add custom labels (in the spot of ‘your custom label’) to differentiate diffusion sequences.
 
 After editing the above, the *config.json* file must be saved to '/your/project/directory/bids/code/preprocessing_dwi/‘ (or another path of the user's choosing, which must be updated in the GUI script as well).
 
