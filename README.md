@@ -1,6 +1,6 @@
 # Diffusion Pre-Processing Pipeline: Connectome 2.0
 The script to generate the diffusion pre-processing GUI can be downloaded as the file *diff_preproc_c2external.py*. Users will need to replace every instance of '/your/project/directory/’ in the GUI script with the path to their desired directory. 
-'''
+
 ## Configuration File:
 
 Users will need to replace every instance of ‘your project sequence’ in the config.json file with the specific or wild-carded names of sequences that they want to extract (e.g., *ep2d_diff_C2_D30_d6_64dirs*). Optionally, users can add custom labels (in the spot of ‘your custom label’) to differentiate diffusion sequences.
@@ -16,15 +16,12 @@ The *expertFile* file for recon-all must be saved to '/your/project/directory/bi
 The file *rician_correct_mppca.sh* must be saved to '/your/project/directory/bids/code/preprocessing_dwi/‘ (or another path of the user's choosing, which must be updated in the GUI script as well).
 
 ## Sequence Specifications:
+Users must enter the big delta (variable 'big_delta') and little delta (variable 'little_delta') values that correspond to their diffusion sequences. 
 
-The GUI script uses the BIDS path input at the top to determine the sequence type. If “seqA” is in the path, then the sequence type will be set to A; the same follows for “seqB” and B. Users can edit the function 'get_sequence_type()' to determine the sequence type using an alternate method. 
+## Volume Indices for TopUp:
 
-Sequences A and B have arbitrarily set diffusion times (A: D33 d22, B: D11 d00). These should be updated to match the user's parameters. Users can search for the comment 'Replace with the D specific to your sequence' to locate this in the script.
-
-## Volume Indices (topup):
-
-The PA and AP volumes indices are set to 9 and 10, respectively. These fields can be edited within the script or in the GUI itself by users.
+The PA- and AP-volume indices are set to 9 and 10, respectively, for TopUp processing. These fields can be edited within the script ("search for 'Default value is "9"') or at the bottom of the GUI itself by users.
 
 ## Gradient Non-Linearity Correction:
 
-The gradient non-linearity correction scripts are unable to be shared, so users must develop their own or skip this step. To input, save the script(s) under ‘/your/project/directory/bids/code/preprocessing_dwi/your_gnc_script.sh’ (or choose another path and edit accordingly). Then, replace ‘/your_gnc_script_A.sh’ and ‘/your_gnc_script_B.sh’ in the GUI script and in gnc_helper.py with the appropriate file path(s). Alternatively, users can circumvent gradient non-linearity correction by bypassing the button if pre-processing stepwise or by de-selecting the option at the bottom before running the entire script.
+Users must save the gradient non-linearity correction scripts must save under ‘/your/project/directory/bids/code/preprocessing_dwi/hcps_gnc_c2.sh’ (or choose another path and edit accordingly). However, the Siemens gradient coil coefficients may not be shared publicly, so users must obtain and enter their own gradient files into the following files: (***). Users can circumvent gradient non-linearity correction by bypassing the button if pre-processing stepwise or by de-selecting the option at the bottom before running the entire script.
