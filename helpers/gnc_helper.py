@@ -11,7 +11,7 @@ def gnc_commands(subject, base_dir, selected_flow, gnc_option):
     output_file = f"{output_dir}/{subject}_dwi.nii.gz"
     
     path = '/your/project/directory/bids/code/preprocessing_dwi/'
-    script_name = "your_gnc_script_A.sh" if gnc_option == "A" else "your_gnc_script_B.sh"
+    script_name = 'hcps_gnc_c2.sh'
     
     cmd = (
         f"{path}/{script_name} -i {input_file} -o {output_file} "
