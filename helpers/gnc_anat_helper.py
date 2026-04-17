@@ -9,7 +9,7 @@ def gnc_anat_commands(subject, anat_process_dir, image_to_run_gnc_dir, gnc_anat_
     output_file = f"{output_dir}/{subject}_T1w.nii.gz"
     
     path = '/your/project/directory/bids/code/preprocessing_dwi/'
-    script_name = "your_gnc_script_A.sh" if gnc_option == "A" else "your_gnc_script_B.sh"
+    script_name = "hcps_gnc_c2.sh"
     
     cmd = (
         f"{path}/{script_name} -i {input_file} -o {output_file} "
