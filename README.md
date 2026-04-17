@@ -9,7 +9,7 @@ After editing the above, the *config.json* file must be saved to '/your/project/
 
 ## Expert File (recon-all):
 
-The *expertFile* file for recon-all must be saved to '/your/project/directory/bids/code/preprocessing_dwi/‘ (or another path of the user's choosing, which must be updated in the GUI script as well).
+The *expertFile* file for recon-all must be saved to '/your/project/directory/bids/code/preprocessing_dwi/recon/‘ (or another path of the user's choosing, which must be updated in the GUI script as well).
 
 ## Rician Noise Correction File:
 
