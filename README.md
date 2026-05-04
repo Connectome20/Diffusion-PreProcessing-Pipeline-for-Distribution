@@ -1,6 +1,6 @@
 # Diffusion MRI Pre-Processing Pipeline: Connectome 2.0
 
-This is a step-by-step workflow for preparing diffusion MRI datasets for analysis. The pipeline wraps *dcm2bids*, *MRtrix3*, *FSL*, *FreeSurfer*, and in-house scripts behind a lightweight Python/Qt GUI.
+This is a step-by-step workflow for preparing diffusion MRI datasets for analysis. The pipeline wraps *dcm2bids*, *MRtrix3*, *FSL*, *FreeSurfer*, and in-house scripts behind a lightweight Python/Qt GUI. For issues with this pipeline, please contact Oakley Martin (omartin3@mgh.harvard.edu).
 
 ## Prerequisites
 
@@ -124,7 +124,7 @@ python diff_preproc_c2.py
 1. **Execute dcm2bids** – Converts raw DICOMs to BIDS.  
 2. **Export Diffusion Parameters** – Writes `bvecs`, `bvals`, `diffusionTime`, `pulseWidth`, `phaseEncoding`.
 3. **Concatenate DWI Data** – Merges volumes automatically or from manual inputs.
-4. **MP-PCA Denoise** - Completes magnitude real denoising; not recommended for Connectome 2.0 data.
+4. **MP-PCA Denoise** - Completes magnitude or real denoising; not recommended for Connectome 2.0 data.
 5. **Gibbs Ringing Removal**
 6. **TopUp Correction**
 7. **Generate Masks** – Generates white matter and brain masks.
