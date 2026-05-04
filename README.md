@@ -135,8 +135,9 @@ python diff_preproc_c2.py
 12. **Write Outputs** - Copies processed DWI outputs to `/your/project/directory/bids/derivatives/processed_dwi/`.
 13. **Divide Volumes for SANDI fitting**
 14. **Divide Volumes for TractCaliber Fitting**
-15. **GNC Anat** - Completes gradient non-linearity correction for anatomical data; not recommended for Connectome 2.0 data.
-16. **recon-all** - Runs FreeSurfer's `recon-all`.
+15. **Run TractSeg**
+16. **GNC Anat** - Completes gradient non-linearity correction for anatomical data; not recommended for Connectome 2.0 data.
+17. **recon-all** - Runs FreeSurfer's `recon-all`.
 
 
 ---
