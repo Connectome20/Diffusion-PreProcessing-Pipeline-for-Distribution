@@ -1,0 +1,3 @@
+This diffusion MRI pre-processing pipeline for Connectome 2.0 was developed by Yixin Ma, Oakley Martin, Hong-Hsi Lee, and Susie Huang of Massachusetts General Hospital and the A. A. Martinos Center for Biomedical Imaging.
+
+It includes components and/or ideas from commonly used neuroimaging tools such as FSL, MRtrix3, and FreeSurfer.
