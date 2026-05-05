@@ -1005,38 +1005,38 @@ def find_indices(phase_encoding_file, diffusion_time_file, bval_file, scanner_ty
 
     # Diffusion time criteria based on scanner type
     if scanner_type == "C2":
-        big_delta = "30"
-        little_delta = "13"
+        diff_time_a = "30"
+        diff_time_b = "13"
     else:
         raise ValueError("Scanner parameters unknown.")
 
     # Indices for different categories
     indices_b0s_PA = [i for i, pe in enumerate(phase_encodings) if pe == "-1"]
-    indices_bigdelta_ms = [i for i, (pe, dt) in enumerate(zip(phase_encodings, diffusion_times)) if pe == "1" and dt == big_delta]
-    indices_littledelta_ms = [i for i, (pe, dt) in enumerate(zip(phase_encodings, diffusion_times)) if pe == "1" and dt == little_delta]
+    indices_difftimea_ms = [i for i, (pe, dt) in enumerate(zip(phase_encodings, diffusion_times)) if pe == "1" and dt == diff_time_a]
+    indices_difftimeb_ms = [i for i, (pe, dt) in enumerate(zip(phase_encodings, diffusion_times)) if pe == "1" and dt == diff_time_b]
     
-    indices_bigdelta_b2400_less = [i for i, (pe, dt, bv) in enumerate(zip(phase_encodings, diffusion_times, bvals)) if pe == "1" and dt == big_delta and 0 < float(bv) < 2400]
-    indices_bigdelta_b2400_greater = [i for i, (pe, dt, bv) in enumerate(zip(phase_encodings, diffusion_times, bvals)) if pe == "1" and dt == big_delta and float(bv) >= 2400]
-    indices_littledelta_b2400_less = [i for i, (pe, dt, bv) in enumerate(zip(phase_encodings, diffusion_times, bvals)) if pe == "1" and dt == little_delta and 0 < float(bv) < 2400]
-    indices_littledelta_b2400_greater = [i for i, (pe, dt, bv) in enumerate(zip(phase_encodings, diffusion_times, bvals)) if pe == "1" and dt == little_delta and float(bv) >= 2400]
+    indices_difftimea_b2400_less = [i for i, (pe, dt, bv) in enumerate(zip(phase_encodings, diffusion_times, bvals)) if pe == "1" and dt == diff_time_a and 0 < float(bv) < 2400]
+    indices_difftimea_b2400_greater = [i for i, (pe, dt, bv) in enumerate(zip(phase_encodings, diffusion_times, bvals)) if pe == "1" and dt == diff_time_a and float(bv) >= 2400]
+    indices_difftimeb_b2400_less = [i for i, (pe, dt, bv) in enumerate(zip(phase_encodings, diffusion_times, bvals)) if pe == "1" and dt == diff_time_b and 0 < float(bv) < 2400]
+    indices_difftimeb_b2400_greater = [i for i, (pe, dt, bv) in enumerate(zip(phase_encodings, diffusion_times, bvals)) if pe == "1" and dt == diff_time_b and float(bv) >= 2400]
 
     # Debug: Print out the length of indices
     print(f"Indices for b0s PA ({scanner_type}):", len(indices_b0s_PA))
-    print(f"Indices for DT={big_delta}ms ({scanner_type}):", len(indices_bigdelta_ms))
-    print(f"Indices for DT={little_delta}ms ({scanner_type}):", len(indices_littledelta_ms))
-    print(f"Indices for DT={big_delta}, BV<2400 ({scanner_type}):", len(indices_bigdelta_b2400_less))
-    print(f"Indices for DT={big_delta}, BV>=2400 ({scanner_type}):", len(indices_bigdelta_b2400_greater))
-    print(f"Indices for DT={little_delta}, BV<2400 ({scanner_type}):", len(indices_littledelta_b2400_less))
-    print(f"Indices for DT={little_delta}, BV>=2400 ({scanner_type}):", len(indices_littledelta_b2400_greater))
+    print(f"Indices for DT={diff_time_a}ms ({scanner_type}):", len(indices_difftimea_ms))
+    print(f"Indices for DT={diff_time_b}ms ({scanner_type}):", len(indices_difftimeb_ms))
+    print(f"Indices for DT={diff_time_a}, BV<2400 ({scanner_type}):", len(indices_difftimea_b2400_less))
+    print(f"Indices for DT={diff_time_a}, BV>=2400 ({scanner_type}):", len(indices_difftimea_b2400_greater))
+    print(f"Indices for DT={diff_time_b}, BV<2400 ({scanner_type}):", len(indices_difftimeb_b2400_less))
+    print(f"Indices for DT={diff_time_b}, BV>=2400 ({scanner_type}):", len(indices_difftimeb_b2400_greater))
 
     return (
         indices_b0s_PA, 
-        indices_bigdelta_ms, 
-        indices_littledelta_ms,
-        indices_bigdelta_b2400_less, 
-        indices_bigdelta_b2400_greater, 
-        indices_littledelta_b2400_less, 
-        indices_littledelta_b2400_greater
+        indices_difftimea_ms, 
+        indices_difftimeb_ms,
+        indices_difftimea_b2400_less, 
+        indices_difftimea_b2400_greater, 
+        indices_difftimeb_b2400_less, 
+        indices_difftimeb_b2400_greater
     )
 
 
@@ -1101,13 +1101,13 @@ def execute_sandi_volume_division():
         bvec_file = f'/your/project/directory/bids/derivatives/processed_dwi/{subj_id}/{subj_id}.bvec'
 
         try:
-            indices_b0s_PA, indices_bigdelta_ms, indices_littledelta_ms, _, _, _, _ = find_indices(
+            indices_b0s_PA, indices_difftimea_ms, indices_difftimeb_ms, _, _, _, _ = find_indices(
                 phase_encoding_file, diffusion_time_file, bval_file, scanner_type
             )
 
             run_mrconvert(input_file, bvec_file, bval_file, indices_b0s_PA, "b0s_PA.nii.gz", "bvecs_b0s_PA.txt", "bvals_b0s_PA.txt", subj_id, "s13_SANDI")
-            run_mrconvert(input_file, bvec_file, bval_file, indices_bigdelta_ms, "bigdelta_ms.nii.gz", "bvecs_bigdelta_ms.txt", "bvals_bigdelta_ms.txt", subj_id, "s13_SANDI")
-            run_mrconvert(input_file, bvec_file, bval_file, indices_littledelta_ms, "littledelta_ms.nii.gz", "bvecs_littledelta_ms.txt", "bvals_littledelta_ms.txt", subj_id, "s13_SANDI")
+            run_mrconvert(input_file, bvec_file, bval_file, indices_difftimea_ms, "difftimea_ms.nii.gz", "bvecs_difftimea_ms.txt", "bvals_difftimea_ms.txt", subj_id, "s13_SANDI")
+            run_mrconvert(input_file, bvec_file, bval_file, indices_difftimeb_ms, "difftimeb_ms.nii.gz", "bvecs_difftimeb_ms.txt", "bvals_difftimeb_ms.txt", subj_id, "s13_SANDI")
 
             status_text.insert('end', f"SANDI volume processing completed successfully for {subj_id}.\n")
         except Exception as e:
@@ -1133,15 +1133,15 @@ def execute_tractcaliber_volume_division():
         bvec_file = f'/your/project/directory/bids/derivatives/processed_dwi/{subj_id}/{subj_id}.bvec'
 
         try:
-            indices_b0s_PA, _, _, indices_bigdelta_b2400_less, indices_bigdelta_b2400_greater, indices_littledelta_b2400_less, indices_littledelta_b2400_greater = find_indices(
+            indices_b0s_PA, _, _, indices_difftimea_b2400_less, indices_difftimea_b2400_greater, indices_difftimeb_b2400_less, indices_difftimeb_b2400_greater = find_indices(
                 phase_encoding_file, diffusion_time_file, bval_file, scanner_type
             )
 
             run_mrconvert(input_file, bvec_file, bval_file, range(min(indices_b0s_PA), max(indices_b0s_PA)+1), "b0s_PA.nii.gz", "bvecs_b0s_PA.txt", "bvals_b0s_PA.txt", subj_id, "s10_TractCaliber")
-            run_mrconvert(input_file, bvec_file, bval_file, range(min(indices_bigdelta_b2400_less)-1,max(indices_bigdelta_b2400_less)+1), "qb32_bigdelta_ms.nii.gz", "bvecs_qb32_bigdelta_ms.txt", "bvals_qb32_bigdelta_ms.txt", subj_id, "s10_TractCaliber")
-            run_mrconvert(input_file, bvec_file, bval_file, range(min(indices_bigdelta_b2400_greater)-1,max(indices_bigdelta_b2400_greater)+1), "qb64_bigdelta_ms.nii.gz", "bvecs_qb64_bigdelta_ms.txt", "bvals_qb64_bigdelta_ms.txt", subj_id, "s10_TractCaliber")
-            run_mrconvert(input_file, bvec_file, bval_file, range(min(indices_littledelta_b2400_less)-1,max(indices_littledelta_b2400_less)+1), "qb32_littledelta_ms.nii.gz", "bvecs_qb32_littledelta_ms.txt", "bvals_qb32_littledelta_ms.txt", subj_id, "s10_TractCaliber")
-            run_mrconvert(input_file, bvec_file, bval_file, range(min(indices_littledelta_b2400_greater)-1,max(indices_littledelta_b2400_greater)+1), "qb64_littledelta_ms.nii.gz", "bvecs_qb64_littledelta_ms.txt", "bvals_qb64_littledelta_ms.txt", subj_id, "s10_TractCaliber")
+            run_mrconvert(input_file, bvec_file, bval_file, range(min(indices_difftimea_b2400_less)-1,max(indices_difftimea_b2400_less)+1), "qb32_difftimea_ms.nii.gz", "bvecs_qb32_difftimea_ms.txt", "bvals_qb32_difftimea_ms.txt", subj_id, "s10_TractCaliber")
+            run_mrconvert(input_file, bvec_file, bval_file, range(min(indices_difftimea_b2400_greater)-1,max(indices_difftimea_b2400_greater)+1), "qb64_difftimea_ms.nii.gz", "bvecs_qb64_difftimea_ms.txt", "bvals_qb64_difftimea_ms.txt", subj_id, "s10_TractCaliber")
+            run_mrconvert(input_file, bvec_file, bval_file, range(min(indices_difftimeb_b2400_less)-1,max(indices_difftimeb_b2400_less)+1), "qb32_difftimeb_ms.nii.gz", "bvecs_qb32_difftimeb_ms.txt", "bvals_qb32_difftimeb_ms.txt", subj_id, "s10_TractCaliber")
+            run_mrconvert(input_file, bvec_file, bval_file, range(min(indices_difftimeb_b2400_greater)-1,max(indices_difftimeb_b2400_greater)+1), "qb64_difftimeb_ms.nii.gz", "bvecs_qb64_difftimeb_ms.txt", "bvals_qb64_difftimeb_ms.txt", subj_id, "s10_TractCaliber")
 
             status_text.insert('end', f"TractCaliber volume processing completed successfully for {subj_id}.\n")
         except Exception as e:
@@ -1158,9 +1158,9 @@ def run_tractseg_for_subject(subject_id):
     dwi_dir = f"{base_dir}/sub-{subject_id}/dwi_process/s13_SANDI"
     output_dir = f"/your/project/directory/bids/derivatives/TractSeg_v1/sub-{subject_id}/"
 
-    dwi_nii = f"{dwi_dir}/littledelta_ms.nii.gz"
-    bval_txt = f"{dwi_dir}/bvals_littledelta_ms.txt"
-    bvec_txt = f"{dwi_dir}/bvecs_littledelta_ms.txt"
+    dwi_nii = f"{dwi_dir}/difftimeb_ms.nii.gz"
+    bval_txt = f"{dwi_dir}/bvals_difftimeb_ms.txt"
+    bvec_txt = f"{dwi_dir}/bvecs_difftimeb_ms.txt"
     mask_nii = f"/your/project/directory/bids/derivatives/processed_dwi/sub-{subject_id}/sub-{subject_id}_brain_mask.nii.gz"
 
     
