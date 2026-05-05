@@ -1,4 +1,5 @@
 % timing.m
+
 function varargout = timing(varargin)
 % TIMING  display begin time, end time, and calculate duration of a command
 %
