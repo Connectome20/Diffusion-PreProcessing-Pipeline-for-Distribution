@@ -95,12 +95,6 @@ Download *diff_preproc_c2.py* onto your machine, and save it to '/your/project/d
 ### Helpers:
 Download all of the helper files, and save them to '/your/project/directory/bids/code/preprocessing_dwi/helpers/'.
 
-### Gradient Non-Linearity Correction Script:
-Download *gncunwarp.sh*, and save it to '/your/project/directory/bids/code/preprocessing_dwi/gradnonlinunwarp/'.
-
-### Gradient Non-Linearity Correction Library:
-Download all of the lib files, and save them to '/your/project/directory/bids/code/preprocessing_dwi/gradnonlinunwarp/lib/'.
-
 ### Configuration File (dcm2bids):
 
 Download *config.json*, and save it to '/your/project/directory/bids/code/preprocessing_dwi/helpers/dcm2bids/‘. Then, replace every instance of '<your project sequence>' in this file with the specific or wild-carded names of your sequences. Optionally, you can add custom labels in place of '<your custom label>'.
@@ -109,9 +103,19 @@ Download *config.json*, and save it to '/your/project/directory/bids/code/prepro
 
 Download *expertFile*, and save it to '/your/project/directory/bids/code/preprocessing_dwi/helpers/recon/‘.
 
-### Rician Noise Correction File:
+### Rician Noise Correction File (denoising):
 
 Download *rician_correct_mppca.sh*, and save it to '/your/project/directory/bids/code/preprocessing_dwi/helpers/noise_correct/‘.
+
+### Acquisition Parameters & b02b0 (eddy / topup):
+
+Download *acqparams.txt* and *b02b0_ym.cnf*, and save them to '/your/project/directory/bids/code/preprocessing_dwi/helpers/topup_eddy_extras/'.
+
+### Gradient Non-Linearity Correction Script:
+Download *gncunwarp.sh*, and save it to '/your/project/directory/bids/code/preprocessing_dwi/gradnonlinunwarp/'.
+
+### Gradient Non-Linearity Correction Library:
+Download all of the lib files, and save them to '/your/project/directory/bids/code/preprocessing_dwi/gradnonlinunwarp/lib/'.
 
 ___
 
