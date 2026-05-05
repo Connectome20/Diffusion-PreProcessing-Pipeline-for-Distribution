@@ -1404,7 +1404,7 @@ bidspath_entry.bind("<KeyRelease>", lambda event: update_paths())
 tk.Label(main_frame, text="Configuration file path:").grid(row=(row_num := row_num + 1), column=0, sticky='w')
 config_entry, config_entry_frame = make_horizontal_scrollable_entry(main_frame, width=50, height=1)
 config_entry_frame.grid(row=row_num, column=1, sticky='ew')
-config_entry.insert('1.0', "/your/project/directory/bids/code/preprocessing_dwi/config.json")
+config_entry.insert('1.0', "/your/project/directory/bids/code/preprocessing_dwi/helpers/dcm2bids/config.json")
 
 # DICOM Source Entry
 tk.Label(main_frame, text="Path to DICOM files:").grid(row=(row_num := row_num + 1), column=0, sticky='w')
