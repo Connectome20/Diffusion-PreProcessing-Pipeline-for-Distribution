@@ -103,7 +103,7 @@ Download all of the lib files, and save them to '/your/project/directory/bids/co
 
 ### Configuration File (dcm2bids):
 
-Download *config.json*, and save it to '/your/project/directory/bids/code/preprocessing_dwi/dcm2bids/‘. Then, replace every instance of 'your project sequence' in this file with the specific or wild-carded names of your sequences. Optionally, you can add custom labels in place of 'your custom label'.
+Download *config.json*, and save it to '/your/project/directory/bids/code/preprocessing_dwi/dcm2bids/‘. Then, replace every instance of '<your project sequence>' in this file with the specific or wild-carded names of your sequences. Optionally, you can add custom labels in place of '<your custom label>'.
 
 ### Expert File (recon-all):
 
