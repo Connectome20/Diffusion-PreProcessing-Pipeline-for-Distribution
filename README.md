@@ -110,7 +110,7 @@ Throughout these instructions, the script, and the helpers, you will see '/your/
 Download *diff_preproc_c2.py* onto your machine, and save it to '/your/project/directory/bids/code/preprocessing_dwi/'. Then, make the following changes within the script:
 - Enter the diffusion times (variables 'diff_time_a' and 'diff_time_b') values that correspond to your diffusion sequences. By default, these values are '30' and '13'.
 - Enter the the PA- and AP-volume indices (search for 'Default value is "9"') for TopUp processing. By default, these values are set to '9' and '10' respectively. These fields can also be changed within the GUI.
-- Since the Siemens gradient coil coefficient file cannot be shared publicly, you must generate this file yourself and save it to '/your/project/directory/preprocessing_dwi/gradnonlinunwarp/coil_file/coeff.grad'.
+- Since the Siemens gradient coil coefficient file cannot be shared publicly, you must generate this file yourself and save it to '/your/project/directory/preprocessing_dwi/gradnonlinunwarp/gradient_coefficients/coeff.grad'.
 
 ### Helpers:
 Download all of the helper files, and save them to '/your/project/directory/bids/code/preprocessing_dwi/helpers/'. You may need to update the eddy_cuda_path variable within eddy_helper.py depending on the FSL configuration on your machine.
