@@ -1,4 +1,4 @@
-# mris_gradient_nonlin__load_gradtable.m
+% mris_gradient_nonlin__load_gradtable.m
 
 function [Dx,Dy,Dz, JacDet, G1xyz2rcs, GR, GC, GS, X, Y, Z] = mris_gradient_nonlin__load_gradtable(gradfilename)
 %MRIS_GRADIENT_NONLIN__LOAD_GRADTABLE
