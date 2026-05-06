@@ -1,4 +1,4 @@
-# mris_gradient_nonlin__jacobian_determinant.m
+% mris_gradient_nonlin__jacobian_determinant.m
 
 function JacDet = mris_gradient_nonlin__jacobian_determinant(Dx, Dy, Dz, d, X, Y, Z)
 %MRIS_GRADIENT_NONLIN__JACOBIAN_DETERMINANT
