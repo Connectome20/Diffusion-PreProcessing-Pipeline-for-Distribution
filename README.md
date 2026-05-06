@@ -1,6 +1,8 @@
 # Diffusion MRI Pre-Processing Pipeline: Connectome 2.0
 
-This is a step-by-step workflow for preparing diffusion MRI datasets for analysis. The pipeline wraps *dcm2bids*, *MRtrix3*, *FSL*, *FreeSurfer*, and in-house scripts behind a lightweight Python/Qt GUI. For issues with this pipeline, please contact Oakley Martin (omartin3@mgh.harvard.edu).
+This is a step-by-step workflow for preparing diffusion MRI datasets for analysis. The pipeline wraps *dcm2bids*, *MRtrix3*, *FSL*, *FreeSurfer*, and in-house scripts behind a lightweight Python/Qt GUI. Throughout these instructions and the scripts themselves, you will see '/your/project/directory/' written into paths as a placeholder. Make sure to replace every instance of this with the actual path to your desired BIDS-format directory. (For example, if your project files are stored at '/autofs/cluster/diffusion_lab/bids/', you would replace '/your/project/directory/' with '/autofs/cluster/diffusion_lab/'.)
+
+For issues with this pipeline, please contact Oakley Martin (omartin3@mgh.harvard.edu).
 ___
 
 ## Prerequisites
@@ -103,8 +105,6 @@ Everything you need (i.e., the GUI and its dependencies) is bundled in the above
 
 ## Download the Pipeline
 
-Throughout these instructions, the script, and the helpers, you will see '/your/project/directory/' written into paths as a placeholder. Make sure to replace every instance of this with the actual path to your desired BIDS-format directory. (For example, if your project files are stored at '/autofs/cluster/diffusion_lab/bids/', I would replace '/your/project/directory/' with '/autofs/cluster/diffusion_lab/'.)
-
 ### Main Script:
 
 Download *diff_preproc_c2.py* onto your machine, and save it to '/your/project/directory/bids/code/preprocessing_dwi/'. Then, make the following changes within the script:
@@ -117,7 +117,7 @@ Download all of the helper files, and save them to '/your/project/directory/bids
 
 ### Configuration File (dcm2bids):
 
-Download *config.json*, and save it to '/your/project/directory/bids/code/preprocessing_dwi/helpers/dcm2bids/‘. Then, replace every instance of '<your project sequence>' in this file with the specific or wild-carded names of your sequences. Optionally, you can add custom labels in place of '<your custom label>'.
+Download *config.json*, and save it to '/your/project/directory/bids/code/preprocessing_dwi/helpers/dcm2bids/‘. Then, replace every instance of `<your project sequence>` in this file with the specific or wild-carded names of your sequences. Optionally, you can add custom labels in place of `<your custom label>`.
 
 ### Expert File (recon-all):
 
