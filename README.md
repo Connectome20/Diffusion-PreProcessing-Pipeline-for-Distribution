@@ -12,27 +12,12 @@ ___
 | *Miniforge* | Latest | For managing Conda environments |
 | *FSL* | 5.0.7 and 6.0+ | Provides *topup* & *eddy* |
 | CUDA | 10.2 | Necessary for GPU-enabled *eddy* |
-| Cluster access (SSH / VNC) & software install permission | N/A | N/A
+| Cluster access (SSH / VNC) & software install permission | N/A | N/A |
 
 ___
 
-## Quick Start: Pre-Built Conda Environment for Martinos Users
-
-```bash
-# Locate your session:
-findsession <subject ID>
-
-# Activate the pre-built Conda environment:
-source /autofs/space/linen_001/users/Yixin/miniforge3/bin/activate
-conda activate /autofs/space/linen_001/users/Yixin/miniforge3/envs/tractseg_env
-
-```
-Everything you need (i.e., the GUI and its dependencies) is bundled in the above environment, so no further installation is necessary.
-
-
----
-
 ## Full Setup
+Note: Martinos users can verify that their shells contain the appropriate paths (see: step #1) and then utilize the Quick Start approach in the next section.
 
 ### 1. Configure Environment Variables
 
@@ -40,16 +25,35 @@ Append the following to your `~/.bash_profile`:
 
 ```bash
 export PATH="/autofs/cluster/pubsw/2/pubsw/Linux2-2.3-x86_64/packages/mrtrix/3.0.3/bin:$PATH"
-export FREESURFER_HOME="/usr/local/freesurfer/7.4.1"
+
+export FREESURFER_HOME="/usr/local/freesurfer/8.0.0"
 export FSFAST_HOME="$FREESURFER_HOME/fsfast"
 export SUBJECTS_DIR="$FREESURFER_HOME/subjects"
 export MNI_DIR="$FREESURFER_HOME/mni"
 source $FREESURFER_HOME/SetUpFreeSurfer.sh
+
+FSLDIR=/usr/pubsw/packages/fsl/6.0.7.4
+. ${FSLDIR}/etc/fslconf/fsl.sh
+PATH=${FSLDIR}/bin:${PATH}
+export FSLDIR PATH
+
+export GNC_HOME=/your/project/directory/bids/code/preprocessing_dwi/gradnonlinunwarp
+export PATH=$PATH:$GNC_HOME
+export FSL_DIR=/usr/pubsw/packages/fsl/5.0.7>  # Necessary for gradient non-linearity correction
 ```
 
-Then, reload the shell:
+Append the following to your `~/.cshrc`:
+
 ```bash
-source ~/.bashrc
+setenv GNC_HOME /your/project/directory/bids/code/preprocessing_dwi/gradnonlinunwarp
+setenv PATH $PATH:$GNC_HOME
+setenv FSL_DIR /usr/pubsw/packages/fsl/5.0.7>
+```
+
+Then, reload both shells:
+```bash
+source ~/.bash_profile
+source ~/.cshrc
 ```
 
 ### 2. Create / Activate a Python Environment
@@ -82,6 +86,21 @@ pip install numpy nibabel dcm2bids dcm2niix PySide6
 ```
 ___
 
+## Quick Start: Pre-Built Conda Environment for Martinos Users
+
+```bash
+# Locate your session:
+findsession <subject ID>
+
+# Activate the pre-built Conda environment:
+source /autofs/space/linen_001/users/Yixin/miniforge3/bin/activate
+conda activate /autofs/space/linen_001/users/Yixin/miniforge3/envs/tractseg_env
+
+```
+Everything you need (i.e., the GUI and its dependencies) is bundled in the above environment, so no further installation is necessary.
+
+---
+
 ## Download the Pipeline
 
 Throughout these instructions, the script, and the helpers, you will see '/your/project/directory/' written into paths as a placeholder. Make sure to replace every instance of this with the actual path to your desired BIDS-format directory. (For example, if my project files are stored at '/autofs/cluster/connectome2/bids/', I would replace '/your/project/directory/' with '/autofs/cluster/connectome2/'.)
@@ -94,7 +113,7 @@ Download *diff_preproc_c2.py* onto your machine, and save it to '/your/project/d
 - Since the Siemens gradient coil coefficient file cannot be shared publicly, you must generate this file yourself and save it to '/your/project/directory/preprocessing_dwi/gradnonlinunwarp/coil_file/coeff.grad'.
 
 ### Helpers:
-Download all of the helper files, and save them to '/your/project/directory/bids/code/preprocessing_dwi/helpers/'.
+Download all of the helper files, and save them to '/your/project/directory/bids/code/preprocessing_dwi/helpers/'. You may need to update the eddy_cuda_path variable within eddy_helper.py depending on the FSL configuration on your machine.
 
 ### Configuration File (dcm2bids):
 
