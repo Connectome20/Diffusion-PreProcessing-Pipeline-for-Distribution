@@ -1,4 +1,4 @@
-# mris_error_exit.m
+% mris_error_exit.m
 
 function mris_error_exit(errstr)
 %MRIS_ERROR_EXIT  displays error message and exits MATLAB (used in batch mode)
